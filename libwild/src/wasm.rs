@@ -573,10 +573,9 @@ pub(crate) struct DebugSectionInput<'data> {
     /// The section name, e.g. `.debug_info`.
     pub(crate) name: &'data [u8],
     /// Index of this section within the input object's section list.
-    #[allow(dead_code)]
+    #[expect(dead_code)]
     pub(crate) section_index: u32,
     /// Index of the owning object within the object layout inputs.
-    #[allow(dead_code)]
     pub(crate) object_index: usize,
     /// The raw DWARF payload, excluding the custom section's name.
     pub(crate) data: &'data [u8],
