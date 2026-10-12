@@ -6568,20 +6568,22 @@ where
         })
         .collect();
     layout.extra_features = &symbol_db.args.extra_features;
-    layout.debug_sections = layout_inputs
-        .iter()
-        .enumerate()
-        .flat_map(|(object_index, input)| {
-            input
-                .debug_sections
-                .iter()
-                .copied()
-                .map(move |mut section| {
-                    section.object_index = object_index;
-                    section
-                })
-        })
-        .collect();
+    if !symbol_db.args.should_strip_debug() {
+        layout.debug_sections = layout_inputs
+            .iter()
+            .enumerate()
+            .flat_map(|(object_index, input)| {
+                input
+                    .debug_sections
+                    .iter()
+                    .copied()
+                    .map(move |mut section| {
+                        section.object_index = object_index;
+                        section
+                    })
+            })
+            .collect();
+    }
     {
         timing_phase!("Compute Wasm code/data section sizes");
         layout.code_section_size = compute_code_section_size(&layout.function_bodies);
