@@ -7347,6 +7347,7 @@ impl platform::Platform for Wasm {
             | osid::WASM_CODE
             | osid::WASM_DATA
             | osid::WASM_NAME
+            | osid::WASM_DEBUG
             | osid::WASM_TARGET_FEATURES => SegmentType::Module,
             _ => SegmentType::Unused,
         };
