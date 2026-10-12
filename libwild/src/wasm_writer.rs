@@ -977,10 +977,6 @@ pub(crate) fn encode_metadata_sections(layout: &WasmLayout<'_>) -> Result<Encode
     Ok(encoded)
 }
 
-/// Concatenate the `.debug*` custom sections from all input objects into a single byte sequence
-/// containing one Wasm custom section per distinct debug section name.
-///
-/// Note: relocations are not yet applied; that will be handled separately.
 fn build_debug_section(sections: &[DebugSectionInput<'_>]) -> Result<Option<Vec<u8>>> {
     use wasm_encoder::Section as _;
 

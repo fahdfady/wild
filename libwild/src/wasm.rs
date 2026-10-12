@@ -582,7 +582,6 @@ pub(crate) struct DebugSectionInput<'data> {
 }
 
 impl<'data> File<'data> {
-    /// Scans every section; only custom sections whose name starts with `.debug` are returned
     fn debug_sections(&self) -> impl Iterator<Item = DebugSectionInput<'data>> + '_ {
         self.sections
             .iter()
